@@ -1,0 +1,40 @@
+{
+  "name": "es6-template-render",
+  "version": "0.1.0",
+  "description": "library to render es6 template base on objects",
+  "main": "lib/index.js",
+  "scripts": {
+    "babelify": "babel index.js -o lib/index.js",
+    "build": "rm -rf lib && mkdir lib && npm run babelify",
+    "prepublish": "npm test && npm run build",
+    "test": "ava test --compilers js:babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumevincent/es6-template-render.git"
+  },
+  "keywords": [
+    "literals",
+    "es6",
+    "template"
+  ],
+  "author": "Guillaume Vincent <guillaume@oslab.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guillaumevincent/es6-template-render/issues"
+  },
+  "homepage": "https://github.com/guillaumevincent/es6-template-render#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-register": "^6.14.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "comments": false
+  }
+}
