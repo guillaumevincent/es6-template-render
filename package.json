@@ -36,5 +36,9 @@
       "es2015"
     ],
     "comments": false
-  }
+  },
+  "files": [
+    "lib/",
+    "index.js"
+  ]
 }
