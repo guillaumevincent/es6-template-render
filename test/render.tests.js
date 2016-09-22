@@ -1,17 +1,22 @@
 import test from 'ava';
-import generateTemplateString from '../index';
+import render from '../index';
 
 test('test render simple variable', t => {
-  const template = generateTemplateString('/api/${param1}/');
-  t.is(template({param1: 'bar'}), '/api/bar/');
+  t.is(render('/api/${param1}/', {param1: 'foo'}), '/api/foo/');
 });
 
 test('test render two variables', t => {
-  const template = generateTemplateString('/api/${param1}/${param2}/');
-  t.is(template({param1: 'bar', param2: 'foo'}), '/api/bar/foo/');
+  t.is(render('/api/${param1}/${param2}/', {param1: 'foo', param2: 'bar'}), '/api/foo/bar/');
 });
 
 test('test render no variable', t => {
-  const template = generateTemplateString('/api/');
-  t.is(template({param1: 'bar', param2: 'foo'}), '/api/');
+  t.is(render('/api/', {param1: 'foo', param2: 'bar'}), '/api/');
+});
+
+test('test render twice same variable', t => {
+  t.is(render('/api/${param1}/${param1}/', {param1: 'foo'}), '/api/foo/foo/');
+});
+
+test('test return url if no param', t => {
+  t.is(render('/api/${param1}/', {}), '/api/${param1}/');
 });

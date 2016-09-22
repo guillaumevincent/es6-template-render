@@ -1,14 +1,8 @@
-module.exports = (() => {
-  function generateTemplate(template) {
-    // Replace ${expressions} (etc) with ${map.expressions}.
-    const sanitized = template
-      .replace(/\$\{([\s]*[^;\s\{]+[\s]*)\}/g, function (_, match) {
-        return `\$\{map.${match.trim()}\}`;
-      })
-      // Afterwards, replace anything that's not ${map.expressions}' (etc) with a blank string.
-      .replace(/(\$\{(?!map\.)[^}]+\})/g, '');
-    return Function('map', `return \`${sanitized}\``);
+module.exports = function (string, context) {
+  for (var key in context) {
+    var find = `\\$\\{(${key})\\}`;
+    var re = new RegExp(find, 'g');
+    string = string.replace(re, context[key]);
   }
-
-  return generateTemplate;
-})();
+  return string
+};
