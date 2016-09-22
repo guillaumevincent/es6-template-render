@@ -1,6 +1,6 @@
 {
   "name": "es6-template-render",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "library to render es6 template base on objects",
   "main": "lib/index.js",
   "scripts": {
