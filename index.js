@@ -1,8 +1,11 @@
 module.exports = function (string, context) {
-  for (var key in context) {
-    var find = `\\$\\{(${key})\\}`;
-    var re = new RegExp(find, 'g');
+  var key, find, re;
+
+  for (key in context) {
+    find = '\\$\\{' + key + '\\}';
+    re = new RegExp(find, 'g');
     string = string.replace(re, context[key]);
   }
-  return string
+
+  return string;
 };
