@@ -22,6 +22,15 @@ library to render es6 template base on objects
     // '/api/foo/bar/'
 ```
 
+or ES5
+
+```js
+var render = require('es6-template-render');
+
+render('/api/${param1}/${param2}/', {param1: 'foo', param2: 'bar'})
+// Output:
+// '/api/foo/bar/'
+```
 
 ## License
 
