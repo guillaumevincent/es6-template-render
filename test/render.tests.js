@@ -20,3 +20,11 @@ test('test render twice same variable', t => {
 test('test return url if no param', t => {
   t.is(render('/api/${param1}/', {}), '/api/${param1}/');
 });
+
+test('test render variable with whitespaces between curlys', t => {
+  t.is(render('/api/${ param1}/', { param1: 'foo'}), '/api/foo/');
+});
+
+test('test render variable with multiple whitespaces between curlys', t => {
+  t.is(render('/api/${ \t param1\n \t}/', { param1: 'foo'}), '/api/foo/');
+});
