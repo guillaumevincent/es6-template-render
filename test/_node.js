@@ -1,4 +1,4 @@
-var render = require('../lib/index');
+var render = require('../index');
 var assert = require('assert');
 
 assert.equal(render('/api/${param1}/', {param1: 'foo'}), '/api/foo/');
