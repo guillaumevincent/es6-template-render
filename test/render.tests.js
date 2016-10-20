@@ -28,3 +28,15 @@ test('test render variable with whitespaces between curlys', t => {
 test('test render variable with multiple whitespaces between curlys', t => {
   t.is(render('/api/${ \t param1\n \t}/', { param1: 'foo'}), '/api/foo/');
 });
+
+test('test render simple object attribute', t => {
+  t.is(render('Hey, ${user.name}', { user: {name: 'Andrea' }}), 'Hey, Andrea');
+});
+
+test('test render complex object', t => {
+  t.is(render('${greeting}, user#${user.id}, your name is ${user.profile.name}', { greeting: "Hi", user: { id: 25, profile: { name: 'Andrea' }}}), 'Hi, user#25, your name is Andrea');
+});
+
+test('test render really complex object', t => {
+  t.is(render('${data.log.user.profile.age}', {data: { log: { user: { profile: { age: 25 }}}}}), '25');
+});
