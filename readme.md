@@ -32,6 +32,16 @@ render('/api/${param1}/${param2}/', {param1: 'foo', param2: 'bar'})
 // '/api/foo/bar/'
 ```
 
+## Use objects instead of string
+
+```js
+    import render from 'es6-template-render';
+
+    render('Hey, ${user.name}', { user: {name: 'Andrea' }})
+    // Output:
+    // 'Hey, Andrea'
+```
+
 ## License
 
-MIT - see license file
+MIT © [Guillaume Vincent](http://guillaumevincent.com)
