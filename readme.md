@@ -42,6 +42,12 @@ render('/api/${param1}/${param2}/', {param1: 'foo', param2: 'bar'})
     // 'Hey, Andrea'
 ```
 
+## Contributors
+
+ * [Andrea Falzetti](https://github.com/andreafalzetti)
+ * [Gabriel](https://github.com/gabrielperales)
+
+
 ## License
 
 MIT © [Guillaume Vincent](http://guillaumevincent.com)
