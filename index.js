@@ -1,18 +1,17 @@
+function _recursive_rendering(string, context, stack) {
+  return Object.keys(context)
+    .reduce(function (acc, key) {
+      var newStack = stack ? stack + '.' : '';
+      var find = '\\$\\{\\s*' + newStack + key + '\\s*\\}';
+      var re = new RegExp(find, 'g');
+
+      if (typeof context[key] === 'object') {
+        return _recursive_rendering(acc, context[key], newStack + key);
+      }
+      return acc.replace(re, context[key]);
+    }, string);
+}
+
 module.exports = function (string, context) {
   return _recursive_rendering(string, context, '');
 };
-
-function _recursive_rendering(string, context, stack) {
-  for (var key in context) {
-    if (context.hasOwnProperty(key)) {
-      if(typeof context[key] === "object") {
-        string = _recursive_rendering(string, context[key], (stack?stack+'.':'')+ key);
-      } else {
-        var find = '\\$\\{\\s*' + (stack?stack +'.':'') + key + '\\s*\\}';
-        var re = new RegExp(find, 'g');
-        string = string.replace(re, context[key]);
-      }
-    }
-  }
-  return string;
-}
