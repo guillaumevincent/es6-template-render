@@ -1,17 +1,11 @@
-function _recursive_rendering(string, context, stack) {
-  return Object.keys(context)
-    .reduce(function (acc, key) {
-      var newStack = stack ? stack + '.' : '';
-      var find = '\\$\\{\\s*' + newStack + key + '\\s*\\}';
-      var re = new RegExp(find, 'g');
+var TEMPLATE_REGEX = /\$\{\s*([a-z_$][\w_$]*(\.[a-z_$][\w_$]*)*)\s*\}/gi;
 
-      if (typeof context[key] === 'object') {
-        return _recursive_rendering(acc, context[key], newStack + key);
-      }
-      return acc.replace(re, context[key]);
-    }, string);
+function dotNotation2Object(object, property) {
+  return object[property];
 }
 
 module.exports = function (string, context) {
-  return _recursive_rendering(string, context, '');
+  return string.replace(TEMPLATE_REGEX, function (match, variable) {
+    return variable.split('.').reduce(dotNotation2Object, context) || match;
+  });
 };
